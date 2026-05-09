@@ -51,26 +51,7 @@ var simple = generator.For("en")
 // → river-table-stone.txt
 ```
 
-### Custom Token Provider
 
-```csharp
-public class GuidTokenProvider : ITokenProvider
-{
-    public bool CanHandle(string token) =>
-        token.Equals("GUID", StringComparison.OrdinalIgnoreCase);
-
-    public string Generate(TokenContext ctx) =>
-        Guid.NewGuid().ToString("N")[..8];
-}
-
-var generator = new FilenameGenerator("dicts")
-    .RegisterProvider(new GuidTokenProvider());
-
-var name = generator.For("en")
-                    .WithFormat("{GUID}-{W}")
-                    .Generate();
-// → a3f2b1c4-River.txt
-```
 
 ### REST API
 
@@ -151,6 +132,28 @@ dictionary_en.json
 ```
 
 Supported out of the box: `en`, `de`, `fr`, `es`, `pt`. Add any language by dropping in a new dictionary file.
+
+
+### Custom Token Provider
+You can extend the built in Token providers by adding your own.  Example below.
+```csharp
+public class GuidTokenProvider : ITokenProvider
+{
+    public bool CanHandle(string token) =>
+        token.Equals("GUID", StringComparison.OrdinalIgnoreCase);
+
+    public string Generate(TokenContext ctx) =>
+        Guid.NewGuid().ToString("N")[..8];
+}
+
+var generator = new FilenameGenerator("dicts")
+    .RegisterProvider(new GuidTokenProvider());
+
+var name = generator.For("en")
+                    .WithFormat("{GUID}-{W}")
+                    .Generate();
+// → a3f2b1c4-River.txt
+```
 
 ## Running the API
 
