@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="FloName.Api/FloName.Api.csproj" Id="2707a438-c536-4a52-a36f-6c00ad993be6" />
+  <Project Path="FloName/FloName.csproj" />
+  <Project Path="FloNameConsole/FloNameConsole.csproj" />
+  <Project Path="Test_FloName/Test_FloName.csproj" />
+</Solution>
